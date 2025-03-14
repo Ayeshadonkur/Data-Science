@@ -1,0 +1,66 @@
+--select department_id,count(*)from hr.employees group by department_id
+--count the no of departments
+
+--select department_id,avg(salary)from hr.employees group by department_id
+--average salary of the employees
+
+--select department_id,MAX(salary)as max_salary,MIN(salary)as min_salary from hr.EMPLOYEES group by department_id
+--maximun salary & minimum salary of the employees
+
+--select department_id,sum(salary) from hr.employees group by department_id
+--sum of salary from department_id
+
+--select job_id,count(*) from hr.employees group by job_id
+
+--select job_id,avg(salary) from hr.employees group by job_id
+
+--select job_id,MAX(salary) from hr.employees group by job_id
+
+--select job_id,MIN(salary) from hr.employees group by job_id
+
+--select job_id,sum(salary) from hr.employees group by job_id
+
+--SELECT EXTRACT(YEAR FROM hire_date) AS hire_year, COUNT(*) AS total_employees FROM hr.employees
+--GROUP BY EXTRACT(YEAR FROM hire_date)
+--ORDER BY hire_year
+
+--SELECT manager_id, COUNT(*) AS team_size FROM HR.employees WHERE manager_id IS NOT NULL GROUP BY manager_id
+
+--SELECT manager_id, avg(salary) FROM HR.employees WHERE manager_id IS NOT NULL GROUP BY manager_id
+
+--SELECT manager_id, max(salary) FROM HR.employees WHERE manager_id IS NOT NULL GROUP BY manager_id
+
+--SELECT EXTRACT(MONTH FROM hire_date) AS hire_month, COUNT(*) AS total_hired FROM hr.employees
+--GROUP BY EXTRACT(MONTH FROM hire_date)
+--ORDER BY hire_month
+
+-- SELECT department_id, SUM(salary) AS total_salary FROM hr.employees
+--GROUP BY department_id
+--ORDER BY total_salary DESC
+--FETCH FIRST 1 ROW ONLY
+
+--SELECT job_id, AVG(salary) AS avg_salary
+--FROM hr.employees
+--GROUP BY job_id
+--ORDER BY avg_salary DESC
+--FETCH FIRST 1 ROW ONLY
+
+
+--SELECT department_id, COUNT(*) AS employees_with_commission
+--FROM hr.employees
+--WHERE commission_pct IS NOT NULL
+--GROUP BY department_id
+
+--SELECT department_id, SUM(salary) AS total_salary_with_commission
+--FROM hr.employees
+--WHERE commission_pct IS NOT NULL
+--GROUP BY department_id
+
+ --1.Count the number of sales transactions for each product.  
+ --select prod_id,count(*) from sh.sales group by prod_id
+
+ --2.Find the average sale amount for each product.  
+ --select prod_id,avg(AMOUNT_SOLD)from sh.sales group by prod_id
+
+--Find the maximum and minimum sale amount for each product. 
+--select AMOUNT_SOLD,MAX(AMOUNT_SOLD),MIN(AMOUNT_SOLD) from sh.sales group by AMOUNT_SOLD
