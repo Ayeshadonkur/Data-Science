@@ -1,0 +1,93 @@
+--Assign a rank to employees based on their salary within each department.
+--SELECT department_id, employee_id, salary, 
+  --     RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS salary_rank
+--FROM hr.employees
+
+-- Find the top 3 highest-paid employees in each department.
+--SELECT department_id, employee_id, salary
+--FROM (
+--    SELECT department_id, employee_id, salary, 
+--           RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS salary_rank
+ --   FROM HR.employees
+--) WHERE salary_rank <= 3
+
+--Identify the second highest salary in each department using DENSE_RANK()
+--SELECT department_id, employee_id, salary
+--FROM (
+--    SELECT department_id, employee_id, salary, 
+--           DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS salary_rank
+--    FROM hr.employees
+--) WHERE salary_rank = 2
+
+--Compute the cumulative total salary of employees ordered by hire date.
+--SELECT employee_id, hire_date, salary, 
+--       SUM(salary) OVER (ORDER BY hire_date) AS cumulative_salary
+--FROM hr.employees
+
+--Assign a row number to each employee in each department.
+--SELECT department_id, employee_id, 
+--       ROW_NUMBER() OVER (PARTITION BY department_id ORDER BY employee_id) AS row_num
+--FROM hr.employees
+
+--Find the salary difference between each employee and the next highest-paid employee.
+--SELECT employee_id, salary, 
+--       LEAD(salary) OVER (ORDER BY salary DESC) - salary AS salary_diff
+--FROM hr.employees
+
+
+-- 12. Calculate the previous month’s salary for each employee using LAG().
+--SELECT employee_id, salary, hire_date, 
+--       LAG(salary) OVER (PARTITION BY employee_id ORDER BY hire_date) AS prev_salary
+--FROM hr.employees
+
+--Identify employees whose salaries increased over time.
+--SELECT employee_id, hire_date, salary, 
+--       LAG(salary) OVER (PARTITION BY employee_id ORDER BY hire_date) AS prev_salary,
+--       CASE WHEN salary > LAG(salary) OVER (PARTITION BY employee_id ORDER BY hire_date) 
+--            THEN 'Increased' ELSE 'Decreased' END AS salary_trend
+--FROM hr.employees
+
+--Find the highest-paid employee in each department.
+--SELECT department_id, employee_id, salary
+--FROM (
+---    SELECT department_id, employee_id, salary,
+ --          RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS salary_rank
+ --   FROM hr.employees
+--) WHERE salary_rank = 1
+
+--Calculate the running total of salaries for employees hired in each department.
+--SELECT department_id, employee_id, salary, 
+ --      SUM(salary) OVER (PARTITION BY department_id ORDER BY hire_date) AS running_total
+--FROM hr.employees
+
+--Find the employees who earn above the average salary of their department.
+--SELECT employee_id, department_id, salary
+--FROM hr.employees
+--WHERE salary > (SELECT AVG(salary) FROM hr.employees WHERE department_id = department_id)
+
+--Rank employees within their department based on experience.
+--SELECT employee_id, department_id, hire_date, 
+ --      RANK() OVER (PARTITION BY department_id ORDER BY hire_date ASC) AS experience_rank
+--FROM hr.employees
+
+--Find the difference between each employee’s salary and the department average.
+--SELECT employee_id, department_id, salary, 
+--       salary - AVG(salary) OVER (PARTITION BY department_id) AS salary_diff
+--FROM hr.employees
+
+--Find the department where the most employees have been hired.
+--SELECT department_id, COUNT(*) AS total_hired
+--FROM hr.employees
+--GROUP BY department_id
+--ORDER BY total_hired DESC
+--FETCH FIRST 1 ROW ONLY
+
+--Identify employees who were hired in the same month and year as someone else.
+--SELECT employee_id, hire_date, 
+--       COUNT(*) OVER (PARTITION BY EXTRACT(MONTH FROM hire_date), EXTRACT(YEAR FROM hire_date)) AS same_month_hires
+--FROM hr.employees
+
+--Calculate the moving average salary over the last 3 employees ordered by hire date.
+--SELECT employee_id, hire_date, salary, 
+--       AVG(salary) OVER (ORDER BY hire_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS moving_avg_salary
+--FROM hr.employees
