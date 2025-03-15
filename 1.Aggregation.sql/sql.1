@@ -1,44 +1,66 @@
---select department_id,count(*)from hr.employees group by department_id
---count the no of departments
 
+1. Count the number of employees in each department
+--select department_id,count(*)from hr.employees group by department_id
+--count the no of employees related to departments
+
+2. Find the average salary in each department
 --select department_id,avg(salary)from hr.employees group by department_id
 --average salary of the employees
 
+
+3. Find the maximum and minimum salary in each department
 --select department_id,MAX(salary)as max_salary,MIN(salary)as min_salary from hr.EMPLOYEES group by department_id
 --maximun salary & minimum salary of the employees
 
+ 4. Find the total salary paid in each department
 --select department_id,sum(salary) from hr.employees group by department_id
 --sum of salary from department_id
 
+5. Count the number of employees in each job role
 --select job_id,count(*) from hr.employees group by job_id
 
+ 6. Find the average salary for each job role
 --select job_id,avg(salary) from hr.employees group by job_id
 
+
+7. Find the maximum salary for each job role
 --select job_id,MAX(salary) from hr.employees group by job_id
 
+
+8. Find the manimum salary for each job role
 --select job_id,MIN(salary) from hr.employees group by job_id
 
+9. Find the total salary paid for each job role
 --select job_id,sum(salary) from hr.employees group by job_id
 
+10. Count the number of employees hired in each year
 --SELECT EXTRACT(YEAR FROM hire_date) AS hire_year, COUNT(*) AS total_employees FROM hr.employees
 --GROUP BY EXTRACT(YEAR FROM hire_date)
 --ORDER BY hire_year
 
+11. Find the number of employees in each manager's team
 --SELECT manager_id, COUNT(*) AS team_size FROM HR.employees WHERE manager_id IS NOT NULL GROUP BY manager_id
 
+ 12. Find the highest salary for each manager
 --SELECT manager_id, avg(salary) FROM HR.employees WHERE manager_id IS NOT NULL GROUP BY manager_id
 
+ 13. Find the average salary for each manager
 --SELECT manager_id, max(salary) FROM HR.employees WHERE manager_id IS NOT NULL GROUP BY manager_id
 
+
+14. Count the number of employees hired in each month of the year
 --SELECT EXTRACT(MONTH FROM hire_date) AS hire_month, COUNT(*) AS total_hired FROM hr.employees
 --GROUP BY EXTRACT(MONTH FROM hire_date)
 --ORDER BY hire_month
 
+ 15. Find the department with the highest total salary
 -- SELECT department_id, SUM(salary) AS total_salary FROM hr.employees
 --GROUP BY department_id
 --ORDER BY total_salary DESC
 --FETCH FIRST 1 ROW ONLY
 
+
+16. Find the job role with the highest average salary
 --SELECT job_id, AVG(salary) AS avg_salary
 --FROM hr.employees
 --GROUP BY job_id
@@ -46,21 +68,38 @@
 --FETCH FIRST 1 ROW ONLY
 
 
+19. Find the number of employees who have a commission, grouped by department
 --SELECT department_id, COUNT(*) AS employees_with_commission
 --FROM hr.employees
 --WHERE commission_pct IS NOT NULL
 --GROUP BY department_id
 
+
+20. Find the sum of salaries for employees who have a commission, grouped by department
 --SELECT department_id, SUM(salary) AS total_salary_with_commission
 --FROM hr.employees
 --WHERE commission_pct IS NOT NULL
 --GROUP BY department_id
 
- --1.Count the number of sales transactions for each product.  
+
+21.Find the total salary paid in each location
+--SELECT d.location_id, SUM(e.salary) AS total_salary
+--FROM hr.employees e
+--JOIN hr.departments d ON e.department_id = d.department_id
+--GROUP BY d.location_id
+
+22.Find the number of employees in each city
+--SELECT l.city, COUNT(*) AS total_employees
+--FROM hr.employees e
+--JOIN hr.departments d ON e.department_id = d.department_id
+--JOIN hr.locations l ON d.location_id = l.location_id
+--GROUP BY l.city
+
+ 1.Count the number of sales transactions for each product.  
  --select prod_id,count(*) from sh.sales group by prod_id
 
- --2.Find the average sale amount for each product.  
+ 2.Find the average sale amount for each product.  
  --select prod_id,avg(AMOUNT_SOLD)from sh.sales group by prod_id
 
---Find the maximum and minimum sale amount for each product. 
+3.Find the maximum and minimum sale amount for each product. 
 --select AMOUNT_SOLD,MAX(AMOUNT_SOLD),MIN(AMOUNT_SOLD) from sh.sales group by AMOUNT_SOLD
