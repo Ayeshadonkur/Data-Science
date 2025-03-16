@@ -73,4 +73,37 @@ SELECT PROD_ID, COUNT(*) FROM SH.SALES GROUP BY PROD_ID;
 -- Find the total number of unique customers who made purchases.
 SELECT COUNT(DISTINCT CUST_ID) FROM SH.SALES
 
+--Retrieve all sales transactions that occurred in the last 30 days.
+SELECT * FROM SH.SALES WHERE TIME_ID>=SYSDATE-INTERVAL '30' DAY;
+
+-- Extract the year from the sales date column.
+SELECT TIME_ID,extract(year from TIME_ID) from sh.sales group by TIME_Id;
+
+-- Extract the month from the sales date column.
+SELECT TIME_ID,extract(month from TIME_ID) from sh.sales group by TIME_Id;
+
+-- Find the total sales for each month.
+SELECT TIME_ID,extract(year from TIME_ID),extract(month from TIME_ID),extract(day from TIME_ID) from sh.sales group by TIME_Id;
+
+-- Retrieve sales records for transactions that occurred on weekends.
+SELECT * FROM sh.sales WHERE TO_CHAR(time_id, 'DY') IN ('SAT', 'SUN');
+
+-- Find the first and last recorded sales transaction dates.
+select max(TIME_ID)as first, min(TIME_ID)as last from sh.sales;
+
+-- Retrieve sales transactions that happened on a specific date ('2024-03-01').
+select * from sh.sales where time_id like '1/3/2024%';
+
+-- Count the number of sales transactions that happened in the last 7 days.
+SELECT * FROM sh.sales WHERE time_id >= SYSDATE - interval '30' day;
+
+-- Retrieve sales that occurred during a specific time range (09:00 AM - 12:00 PM).
+SELECT * 
+FROM sh.sales 
+WHERE TO_CHAR(time_id, 'HH24:MI:SS') BETWEEN '09:00:00' AND '12:00:00';
+
+-- Get the difference in days between the first and the last transaction in the table.
+select max(time_id)-min(TIME_ID) from sh.sales;
+
+
 
