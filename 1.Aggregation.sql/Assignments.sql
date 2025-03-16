@@ -42,3 +42,35 @@ select TIME_ID,extract (year from TIME_ID)as year,extract(month from TIME_ID)as 
 
 -- Find the last day of the month for each TIME_ID
 SELECT TIME_ID, LAST_DAY(TIME_ID) AS LAST_DAY_OF_MONTH FROM sh.sales
+
+--Retrieve all records from the sales.sh table.
+select * from sh.sales;
+
+-- Get the total number of sales transactions recorded.
+SELECT COUNT(*) FROM sh.sales;
+
+-- Retrieve unique product IDs from the sales.sh table
+select distinct prod_id from sh.sales;
+
+-- Get all sales details where the quantity sold is more than 5.
+select * from sh.sales where QUANTITY_SOLD>5;
+
+-- Find the total revenue by multiplying price and quantity for all sales.
+SELECT sum(QUANTITY_SOLD * AMOUNT_SOLD)as TOTAL_REVENUE FROM SH.SALES;
+
+-- Find the average sale amount per transaction.
+SELECT AVG(AMOUNT_SOLD) FROM SH.SALES;
+
+-- Retrieve the top 5 highest sales transactions by amount.
+SELECT AMOUNT_SOLD FROM SH.SALES ORDER BY AMOUNT_SOLD DESC;
+
+-- Retrieve all sales made for a specific product ID (P1001).
+SELECT PROD_ID FROM SH.SALES WHERE PROD_ID = '40'
+
+-- Count the number of transactions per product.
+SELECT PROD_ID, COUNT(*) FROM SH.SALES GROUP BY PROD_ID;
+
+-- Find the total number of unique customers who made purchases.
+SELECT COUNT(DISTINCT CUST_ID) FROM SH.SALES
+
+
