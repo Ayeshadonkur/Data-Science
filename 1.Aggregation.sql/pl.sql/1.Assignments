@@ -97,6 +97,47 @@ END;
 --         END 
 --     INTO emp_exists 
 --     FROM dual;
+
+-- 11. Selecting Employee with Highest Salary
+-- DECLARE
+--   emp_name VARCHAR2(50);
+-- BEGIN
+--     select first_name into emp_name from hr.EMPLOYEES
+--     where SALARY = (Select Max(salary) from hr.employees);
+--     dbms_output.put_line('HIGHEST PAID SALARY: '|| emp_name);
+-- END;
+
+-- 12. Fetching Department Name
+-- DECLARE
+--   dept_name VARCHAR2(100);
+-- BEGIN
+--     select department_name into dept_name from hr.departments where department_id=10;
+--     dbms_output.put_line('Department:' ||' '|| dept_name);
+-- END;
+
+-- 13. Fetching Employee Count in a Department
+-- DECLARE
+--   employee_count NUMBER;
+-- BEGIN
+--   Select count(*) into employee_count from hr.employees where DEPARTMENT_ID=20;
+--   dbms_output.put_line(employee_count);
+-- END;
+
+-- 14. Fetching Sum of All Salaries
+-- DECLARE
+--   total_salary NUMBER;
+-- BEGIN
+--     select SUM(SALARY) into total_salary from hr.EMPLOYEES;
+--     dbms_output.put_line('TOTAL SALARY: '|| total_salary);
+-- END;
+
+-- 15. Fetching Employee Joining Date
+--DECLARE
+--    hire_date DATE;
+--BEGIN
+--    SELECT hire_date INTO hire_date FROM hr.employees WHERE EMPLOYEE_id = 107;
+--    DBMS_OUTPUT.PUT_LINE('Employee Hire Date: ' || hire_date);
+--END;
     
 --     DBMS_OUTPUT.PUT_LINE('Employee Exists: ' || emp_exists);
 -- END;
