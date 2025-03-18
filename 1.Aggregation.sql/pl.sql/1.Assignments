@@ -51,3 +51,53 @@ BEGIN
   select count(*) into total_employees from hr.employees;
   dbms_output.put_line(total_employees);
 END;
+
+-- 6. Fetching MAX Salary
+-- DECLARE
+--     Max_salary NUMBER;
+-- BEGIN
+--     select Max(salary) into Max_salary from hr.employees;
+--     dbms_output.put_line(Max_salary);
+-- END;
+
+-- 7. Fetching MIN Salary
+-- DECLARE 
+--   Min_salary NUMBER;
+-- BEGIN
+--     select Min(salary) into Min_salary from hr.EMPLOYEES;
+--     dbms_output.put_line(Min_salary);
+-- END;
+
+-- 8. Fetching AVG Salary
+-- DECLARE
+--     AVG_SALARY NUMBER;
+-- BEGIN
+--     select AVG(SALARY) into AVG_SALARY from hr.employees;
+--     dbms_output.put_line(AVG_SALARY);
+-- END;
+
+-- 9. Fetching Employee Name Using Subquery
+-- DECLARE
+--     emp_name VARCHAR2(50);
+-- BEGIN
+--     SELECT first_name INTO emp_name FROM hr.employees 
+--     WHERE employee_id = (SELECT MIN(employee_id) FROM hr.employees);
+--     DBMS_OUTPUT.PUT_LINE('FIRST_NAME: ' ||' '|| emp_name);
+-- END;
+
+-- 10. Fetching Data Using EXISTS
+--------------------------------------------------
+-- DECLARE
+--     emp_exists VARCHAR2(10);
+-- BEGIN
+--     SELECT 
+--         CASE 
+--             WHEN EXISTS (SELECT 1 FROM hr.employees WHERE employee_id = 105) THEN 'Yes'
+--             ELSE 'No'
+--         END 
+--     INTO emp_exists 
+--     FROM dual;
+    
+--     DBMS_OUTPUT.PUT_LINE('Employee Exists: ' || emp_exists);
+-- END;
+-- /
