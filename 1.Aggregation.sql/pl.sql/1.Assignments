@@ -1,4 +1,4 @@
--- 1. Simple SELECT INTO Statement
+1. Simple SELECT INTO Statement
 -- DECLARE
 --   employee_name VARCHAR2(100);
 -- BEGIN
@@ -6,7 +6,7 @@
 --   dbms_output.put_line(employee_name);
 -- END;
 
--- 2. SELECT Multiple Columns INTO Variables
+ 2. SELECT Multiple Columns INTO Variables
 -- DECLARE
 --      emp_name VARCHAR2(100);
 --      emp_salary NUMBER;
@@ -15,7 +15,7 @@
 --      dbms_output.put_line(emp_name||emp_salary);
 -- END;
 
--- 3. Handling No Data Found Exception
+ 3. Handling No Data Found Exception
 -- DECLARE
 --     emp_salary NUMBER;
 -- BEGIN
@@ -29,7 +29,7 @@
 -- END;
 --/
 
--- 4. Using SELECT with CASE Statement
+ 4. Using SELECT with CASE Statement
 -- DECLARE
 --     emp_status VARCHAR2(20);
 -- BEGIN
@@ -44,7 +44,7 @@
 -- END;
 -- /
 
--- 5. Using COUNT() with SELECT INTO
+ 5. Using COUNT() with SELECT INTO
 DECLARE
   total_employees NUMBER;
 BEGIN
@@ -52,7 +52,7 @@ BEGIN
   dbms_output.put_line(total_employees);
 END;
 
--- 6. Fetching MAX Salary
+ 6. Fetching MAX Salary
 -- DECLARE
 --     Max_salary NUMBER;
 -- BEGIN
@@ -60,7 +60,7 @@ END;
 --     dbms_output.put_line(Max_salary);
 -- END;
 
--- 7. Fetching MIN Salary
+ 7. Fetching MIN Salary
 -- DECLARE 
 --   Min_salary NUMBER;
 -- BEGIN
@@ -68,7 +68,7 @@ END;
 --     dbms_output.put_line(Min_salary);
 -- END;
 
--- 8. Fetching AVG Salary
+ 8. Fetching AVG Salary
 -- DECLARE
 --     AVG_SALARY NUMBER;
 -- BEGIN
@@ -76,7 +76,7 @@ END;
 --     dbms_output.put_line(AVG_SALARY);
 -- END;
 
--- 9. Fetching Employee Name Using Subquery
+ 9. Fetching Employee Name Using Subquery
 -- DECLARE
 --     emp_name VARCHAR2(50);
 -- BEGIN
@@ -85,8 +85,7 @@ END;
 --     DBMS_OUTPUT.PUT_LINE('FIRST_NAME: ' ||' '|| emp_name);
 -- END;
 
--- 10. Fetching Data Using EXISTS
---------------------------------------------------
+ 10. Fetching Data Using EXISTS
 -- DECLARE
 --     emp_exists VARCHAR2(10);
 -- BEGIN
@@ -98,7 +97,7 @@ END;
 --     INTO emp_exists 
 --     FROM dual;
 
--- 11. Selecting Employee with Highest Salary
+ 11. Selecting Employee with Highest Salary
 -- DECLARE
 --   emp_name VARCHAR2(50);
 -- BEGIN
@@ -107,7 +106,7 @@ END;
 --     dbms_output.put_line('HIGHEST PAID SALARY: '|| emp_name);
 -- END;
 
--- 12. Fetching Department Name
+ 12. Fetching Department Name
 -- DECLARE
 --   dept_name VARCHAR2(100);
 -- BEGIN
@@ -115,7 +114,7 @@ END;
 --     dbms_output.put_line('Department:' ||' '|| dept_name);
 -- END;
 
--- 13. Fetching Employee Count in a Department
+ 13. Fetching Employee Count in a Department
 -- DECLARE
 --   employee_count NUMBER;
 -- BEGIN
@@ -123,7 +122,7 @@ END;
 --   dbms_output.put_line(employee_count);
 -- END;
 
--- 14. Fetching Sum of All Salaries
+ 14. Fetching Sum of All Salaries
 -- DECLARE
 --   total_salary NUMBER;
 -- BEGIN
@@ -131,7 +130,7 @@ END;
 --     dbms_output.put_line('TOTAL SALARY: '|| total_salary);
 -- END;
 
--- 15. Fetching Employee Joining Date
+ 15. Fetching Employee Joining Date
 --DECLARE
 --    hire_date DATE;
 --BEGIN
@@ -141,4 +140,57 @@ END;
     
 --     DBMS_OUTPUT.PUT_LINE('Employee Exists: ' || emp_exists);
 -- END;
--- /
+
+ 16. Selecting Second Highest Salary
+-- DECLARE
+--     second_highest_salary NUMBER;
+-- BEGIN
+--     SELECT DISTINCT salary INTO second_highest_salary FROM hr.employees 
+--     WHERE salary < (SELECT MAX(salary) FROM hr.employees) 
+--     ORDER BY salary DESC FETCH FIRST 1 ROW ONLY;
+    
+--     DBMS_OUTPUT.PUT_LINE('Second Highest Salary: ' || second_highest_salary);
+-- END;
+
+
+ 17. Selecting Employees with Same Salary as John
+-- DECLARE
+--     emp_count NUMBER;
+--     employees_name VARCHAR2(50);
+-- BEGIN
+--     SELECT COUNT(*) INTO emp_count FROM hr.employees 
+--     WHERE (salary = (SELECT (salary from hr.employees) WHERE FIRST_NAME = 'John'));
+    
+--     DBMS_OUTPUT.PUT_LINE('Employees with John''s Salary:' || emp_count);
+-- END;
+
+ 18. Fetching Manager Name of an Employee
+-- DECLARE
+--     FIRST_NAME VARCHAR2(100);
+-- BEGIN
+--     SELECT first_name INTO FIRST_NAME FROM hr.employees WHERE EMPLOYEE_ID = 110;
+--     DBMS_OUTPUT.PUT_LINE('Manager_Name:' || FIRST_NAME);
+-- END;
+
+19. Fetching Number of Employees Who Earn Above Average Salary
+--  DECLARE
+--      count_above_avg NUMBER;
+--  BEGIN
+--      SELECT COUNT(*) INTO count_above_avg FROM hr.employees 
+--      WHERE salary > (SELECT AVG(salary) FROM hr.employees);
+    
+--     DBMS_OUTPUT.PUT_LINE('Employees Earning Above Average: ' || count_above_avg);
+--  END;
+
+20. Fetching Employee Name and Role
+-- DECLARE
+--     emp_name VARCHAR2(50);
+--     emp_role VARCHAR2(50);
+-- BEGIN
+--     SELECT FIRST_NAME, JOB_ID INTO emp_name, emp_role FROM hr.employees 
+--     WHERE employee_id = 112;
+    
+--     DBMS_OUTPUT.PUT_LINE('Employee: ' || emp_name || ' Role: ' || emp_role);
+-- END;
+/
+
