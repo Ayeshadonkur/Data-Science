@@ -52,5 +52,16 @@
 -- FROM hr.employees e
 -- INNER JOIN projects.projects p ON e.employee_id = p.project_name
 
+11.SELECT e.employee_id, e.first_name
+FROM hr.employees e
+LEFT JOIN projects.projects p ON e.employee_id = p.id
+WHERE p.id IS NULL;
+
+12. Retrieve project names along with the department handling them using INNER JOIN
+SELECT p.name, d.department_name
+FROM PROJECTS.projects p
+INNER JOIN hr.departments d ON p.id = d.department_id;
+
+
 
 
