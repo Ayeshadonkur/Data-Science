@@ -63,5 +63,28 @@ FROM PROJECTS.projects p
 INNER JOIN hr.departments d ON p.id = d.department_id;
 
 
+28. Retrieve employees and their project details, even if they are not assigned to a project using LEFT JOIN
+SELECT e.employee_id, e.first_name, p.name
+FROM hr.employees e
+LEFT JOIN projects.projects p ON e.employee_id = p.id;
+
+29. Retrieve departments and the count of employees in each department using INNER JOIN and GROUP BY
+SELECT d.department_id, d.department_name, COUNT(e.employee_id) AS employee_count
+FROM hr.departments d
+LEFT JOIN hr.employees e ON d.department_id = e.department_id
+GROUP BY d.department_id, d.department_name;
+
+
+30. Retrieve employees who work on projects located in a different city than their department using INNER JOIN
+SELECT e.employee_id, e.first_name, d.department_name, p.name, l.city AS project_city
+FROM hr.employees e
+INNER JOIN projects.projects p ON e.employee_id = p.id
+INNER JOIN hr.departments d ON e.department_id = d.department_id
+INNER JOIN hr.locations l ON p.id = l.location_id
+WHERE d.location_id <> p.id;
+
+
+
+
 
 
