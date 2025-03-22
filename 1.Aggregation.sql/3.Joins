@@ -63,6 +63,34 @@ FROM PROJECTS.projects p
 INNER JOIN hr.departments d ON p.id = d.department_id;
 
 
+20. Retrieve employees who earn more than their department’s average salary using INNER JOIN and a subquery
+SELECT e.employee_id, e.employee_name, e.salary
+FROM employees e
+INNER JOIN departments d ON e.department_id = d.department_id
+WHERE e.salary > (SELECT AVG(salary) FROM employees WHERE department_id = e.department_id);
+
+21. Retrieve employees who have the same job role as another employee using SELF JOIN
+SELECT e1.employee_id, e1.employee_name, e2.employee_name AS coworker_name, e1.job_id
+FROM employees e1
+INNER JOIN employees e2 ON e1.job_id = e2.job_id AND e1.employee_id <> e2.employee_id;
+
+22. Retrieve employees and their department names, but show "Not Assigned" if an employee has no department using LEFT JOIN and COALESCE
+SELECT e.employee_id, e.employee_name, COALESCE(d.department_name, 'Not Assigned') AS department_name
+FROM employees e
+LEFT JOIN departments d ON e.department_id = d.department_id;
+
+23. Retrieve employees and their assigned projects, including employees who are not assigned to any project using FULL OUTER JOIN
+SELECT e.employee_id, e.employee_name, p.project_name
+FROM employees e
+FULL OUTER JOIN projects p ON e.employee_id = p.employee_id;
+
+24. Retrieve employees who work in a city where their department is located using INNER JOIN
+SELECT e.employee_id, e.employee_name, l.city
+FROM employees e
+INNER JOIN departments d ON e.department_id = d.department_id
+INNER JOIN locations l ON d.location_id = l.location_id;
+
+
 28. Retrieve employees and their project details, even if they are not assigned to a project using LEFT JOIN
 SELECT e.employee_id, e.first_name, p.name
 FROM hr.employees e
