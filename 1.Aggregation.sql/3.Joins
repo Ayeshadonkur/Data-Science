@@ -62,6 +62,18 @@ SELECT p.name, d.department_name
 FROM PROJECTS.projects p
 INNER JOIN hr.departments d ON p.id = d.department_id;
 
+17. Retrieve employees, their department names, and their assigned project names using multiple INNER JOINs
+SELECT e.employee_id, e.last_name, d.department_name, p.name
+FROM hr.employees e
+INNER JOIN hr.departments d ON e.department_id = d.department_id
+INNER JOIN projects.projects p ON e.employee_id = p.id
+
+18. Retrieve employees who have worked on more than one project using INNER JOIN and GROUP BY
+SELECT e.employee_id, e.first_name, COUNT(p.id) AS project_count
+FROM hr.employees e
+INNER JOIN projects. projects p ON e.employee_id = p.id
+GROUP BY e.employee_id, e.first_name
+HAVING COUNT(p.id) > 1;
 
 20. Retrieve employees who earn more than their department’s average salary using INNER JOIN and a subquery
 SELECT e.employee_id, e.employee_name, e.salary
