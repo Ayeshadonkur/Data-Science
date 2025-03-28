@@ -1,0 +1,80 @@
+-- PROCEDURE 1: Print Hello World
+CREATE OR REPLACE PROCEDURE print_Hello_WORLD is
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('HELLO, WORLD!');
+END;
+
+-- PROCEDURE 2: Add Two Numbers
+CREATE OR REPLACE procedure add_number(a in number,b in number)is
+  result NUMBER;
+BEGIN
+  result:= a+b;
+    DBMS_OUTPUT.PUT_LINE('sum: ' ||result);
+end;
+
+-- PROCEDURE 3: Insert a Record into Employees Table
+CREATE OR REPLACE procedure insert_employee(p_id in number,p_name in varchar2)is
+BEGIN
+    INSERT into employees(emp_id,emp_name) VALUES (p_id,p_name);
+    commit;
+    DBMS_OUTPUT.PUT_LINE('Employee inserted successfully');
+end;
+
+-- PROCEDURE 4: Update Salary of an Employee
+CREATE OR REPLACE procedure update_salary(p_id in NUMBER,new_salary in number)is
+BEGIN
+    update employees set salary = new_salary where emp_id=p_id;
+    commit;
+end;
+
+-- PROCEDURE 5: Delete Employee by ID
+CREATE OR REPLACE procedure delete_employee(p_id in number)is
+begin
+    delete from employees where emp_id=p_id;
+    commit;
+end;
+
+-- PROCEDURE 6: Fetch Employee Name by ID
+CREATE OR REPLACE PROCEDURE get_employee_name(p_id IN NUMBER) IS
+  v_name employees.emp_name%TYPE;
+BEGIN
+  SELECT emp_name INTO v_name FROM employees WHERE emp_id = p_id;
+  DBMS_OUTPUT.PUT_LINE('Employee Name: ' || v_name);
+END;
+
+-- PROCEDURE 7: Loop Through 1 to 5
+CREATE OR REPLACE procedure loop_example is
+begin
+    for i in 1..5 loop
+      dbms_output.put_line('iteration:'||i);
+    end loop;
+end;
+
+
+-- PROCEDURE 8: Count Total Employees
+CREATE OR REPLACE procedure count_employees is
+    total NUMBER;
+BEGIN
+    SELECT count(*) into total from employees;
+    dbms_output.put_line('total employees:' ||total);
+end;
+
+-- PROCEDURE 9: Raise Custom Exception
+CREATE OR REPLACE procedure raise_custom_exception is
+    e_custom exception;
+begin
+    RAISE e_custom;
+Exception
+    WHEN e_custom THEN
+       dbms_output.put_line('custom exception raised');
+end;
+
+
+-- PROCEDURE 10: Display Current Date
+CREATE or replace procedure show_date is
+BEGIN
+    dbms_output.put_line('Today''s date: '|| sysdate);
+end;
+
+
+
